@@ -1,15 +1,3 @@
-//sum of prices
-//create product
-//save local storage
-// read
-//clear inputs
-//delete
-// count
-//update
-// search
-// clean
-
-//sum of prices
 let title = document.getElementById("title");
 let price = document.getElementById("price");
 let taxes = document.getElementById("taxes");
@@ -22,7 +10,6 @@ let submit = document.querySelector(".submit");
 let mood = "create";
 let temp; // i will put i in here
 
-//
 function getTotal() {
   if (price.value != "" && price.value != 0) {
     let result = +price.value + +taxes.value + +ads.value - +discount.value;
@@ -34,30 +21,13 @@ function getTotal() {
   }
 }
 
-// create
-//
-//
-//
-//عشان احافظ علي البيانات القديمه لما اعمل ريلود
-//هتعمل شرط بيقول لو اللوكال ستوراج مش فاضيه هات البيانات اللي فيها حطها في المتغير
-// لو اللوكال ستوراج فاضيه خلاص اعمل مصفوفه فاضيه بقا
-
-// JSON.parse() takes a JSON string and transforms it into a JavaScript object.
-// هو كده كده شايف اللوكال ستوراج من اي حته
 let proData;
 if (localStorage.product != null) {
   proData = JSON.parse(localStorage.product); //put the value of product key (old array of obj) in prodata
 } else {
   proData = [];
 }
-//  يعني لو في بيانات قديمه حطها في المتغير لو مفيش اعمل أرراي فاضيه واملاها
-//
-//
-//
-//
-//هعمل اوبجكت عشان احفط فيه خصائص المنتج الواحد كلها
-//كل ما اعمل كرييت هينشا نفس الاوبجكت بنفس الخصائص بنفس القيم مكان الاوبجكت القديم
-// هعمل مصفوفه من الاوبجكتات عشان كل ما اضغط علي كرييت يضيف المنتج في المصفوفه
+
 function create() {
   let obj = {
     title: title.value.toLowerCase(),
@@ -101,15 +71,7 @@ function create() {
 
   readData();
 }
-// JSON.stringify() takes a JavaScript object  and transforms it into a JSON string
 
-// var arr;
-// var arr2 = [1, 2];
-// arr = arr2;
-// console.log(arr);
-//
-
-//clear inputs
 function clearData() {
   title.value = "";
   price.value = "";
@@ -120,27 +82,23 @@ function clearData() {
   count.value = "";
   category.value = "";
 }
-
-// read
-//
-//
 function readData() {
   getTotal();
   let table = "";
   for (var i = 0; i < proData.length; i++) {
     table += ` 
-      <tr>
-      <td>${i + 1}</td>
-      <td>${proData[i].title}</td>
-      <td>${proData[i].price}</td>
-      <td>${proData[i].taxes}</td>
-      <td>${proData[i].ads}</td>
-      <td>${proData[i].discount}</td>
-      <td>${proData[i].category}</td>
-      <td>${proData[i].total}</td>
-      <td><button id="update" onclick="updateData(${i})">update</button></td>
-      <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
-    </tr> `;
+        <tr>
+        <td>${i + 1}</td>
+        <td>${proData[i].title}</td>
+        <td>${proData[i].price}</td>
+        <td>${proData[i].taxes}</td>
+        <td>${proData[i].ads}</td>
+        <td>${proData[i].discount}</td>
+        <td>${proData[i].category}</td>
+        <td>${proData[i].total}</td>
+        <td><button id="update" onclick="updateData(${i})">update</button></td>
+        <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
+      </tr> `;
   }
   document.querySelector(".aa").innerHTML = table;
 
@@ -154,11 +112,8 @@ function readData() {
     document.getElementById("deleteAll").style.display = "none";
   }
 }
-readData(); // عشان تظهر البيانات علي طول
+readData();
 
-//
-//
-// delete item '
 function deleteItem(i) {
   proData.splice(i, 1); // delete that product(obj) from the array
   localStorage.product = JSON.stringify(proData);
@@ -166,17 +121,12 @@ function deleteItem(i) {
   readData();
 }
 
-//
-//
-// delete all
-
 function delAll() {
   proData = [];
   localStorage.product = JSON.stringify(proData);
   readData();
 }
 
-// updata
 function updateData(i) {
   title.value = proData[i].title;
   price.value = proData[i].price;
@@ -195,8 +145,6 @@ function updateData(i) {
   });
 }
 
-// search
-//
 let searchMode = "title";
 let btnSearch = document.getElementById("search");
 function getSearchMode(id) {
@@ -217,34 +165,34 @@ function searchData(value) {
     if (searchMode == "title") {
       if (proData[i].title.includes(value.toLowerCase())) {
         table += ` 
-        <tr>
-        <td>${i + 1}</td>
-        <td>${proData[i].title}</td>
-        <td>${proData[i].price}</td>
-        <td>${proData[i].taxes}</td>
-        <td>${proData[i].ads}</td>
-        <td>${proData[i].discount}</td>
-        <td>${proData[i].category}</td>
-        <td>${proData[i].total}</td>
-        <td><button id="update" onclick="updateData(${i})">update</button></td>
-        <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
-      </tr> `;
+          <tr>
+          <td>${i + 1}</td>
+          <td>${proData[i].title}</td>
+          <td>${proData[i].price}</td>
+          <td>${proData[i].taxes}</td>
+          <td>${proData[i].ads}</td>
+          <td>${proData[i].discount}</td>
+          <td>${proData[i].category}</td>
+          <td>${proData[i].total}</td>
+          <td><button id="update" onclick="updateData(${i})">update</button></td>
+          <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
+        </tr> `;
       }
     } else {
       if (proData[i].category.includes(value.toLowerCase())) {
         table += ` 
-        <tr>
-        <td>${i + 1}</td>
-        <td>${proData[i].title}</td>
-        <td>${proData[i].price}</td>
-        <td>${proData[i].taxes}</td>
-        <td>${proData[i].ads}</td>
-        <td>${proData[i].discount}</td>
-        <td>${proData[i].category}</td>
-        <td>${proData[i].total}</td>
-        <td><button id="update" onclick="updateData(${i})">update</button></td>
-        <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
-      </tr> `;
+          <tr>
+          <td>${i + 1}</td>
+          <td>${proData[i].title}</td>
+          <td>${proData[i].price}</td>
+          <td>${proData[i].taxes}</td>
+          <td>${proData[i].ads}</td>
+          <td>${proData[i].discount}</td>
+          <td>${proData[i].category}</td>
+          <td>${proData[i].total}</td>
+          <td><button id="update" onclick="updateData(${i})">update</button></td>
+          <td><button id="delete" onclick="deleteItem(${i})">delete</button></td>
+        </tr> `;
       }
     }
   }
