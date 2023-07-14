@@ -10,17 +10,6 @@ let submit = document.querySelector(".submit");
 let mood = "create";
 let temp; // i will put i in here
 
-function getTotal() {
-  if (price.value != "" && price.value != 0) {
-    let result = +price.value + +taxes.value + +ads.value - +discount.value;
-    total.innerHTML = result;
-    total.style.backgroundColor = "#bbb";
-  } else {
-    total.innerHTML = "";
-    total.style.backgroundColor = "#bbb";
-  }
-}
-
 let proData;
 if (localStorage.product != null) {
   proData = JSON.parse(localStorage.product); //put the value of product key (old array of obj) in prodata
@@ -28,6 +17,22 @@ if (localStorage.product != null) {
   proData = [];
 }
 
+///
+//
+///
+
+function getTotal() {
+  if (price.value != "" && price.value != 0) {
+    let result = +price.value + +taxes.value + +ads.value - +discount.value;
+    total.innerHTML = result;
+  } else {
+    total.innerHTML = "";
+  }
+}
+
+//
+//
+//
 function create() {
   let obj = {
     title: title.value.toLowerCase(),
@@ -42,7 +47,7 @@ function create() {
 
   // count
   if (title.value != "" && price.value != "" && count.value < 10000) {
-    if (mood === "create") {
+    if (mood == "create") {
       if (obj.count > 1) {
         for (let i = 1; i <= obj.count; i++) {
           proData.push(obj);
@@ -53,12 +58,7 @@ function create() {
       clearData();
     } else {
       // update
-      proData[temp].title = title.value;
-      proData[temp].price = price.value;
-      proData[temp].taxes = taxes.value;
-      proData[temp].ads = ads.value;
-      proData[temp].discount = discount.value;
-      proData[temp].category = category.value;
+      proData[temp] = obj;
       mood = "create";
       submit.innerHTML = "create";
       count.style.display = "inline-block";
@@ -70,6 +70,8 @@ function create() {
   localStorage.setItem("product", JSON.stringify(proData));
 
   readData();
+  clearData();
+  getTotal();
 }
 
 function clearData() {
@@ -139,6 +141,7 @@ function updateData(i) {
   submit.innerHTML = "update";
   mood = "update";
   temp = i;
+
   scroll({
     top: 0,
     behavior: "smooth",
