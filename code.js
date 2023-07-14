@@ -89,7 +89,7 @@ function readData() {
     table += ` 
         <tr>
         <td>${i + 1}</td>
-        <td>${proData[i].title}</td>
+        <td >${proData[i].title}</td>
         <td>${proData[i].price}</td>
         <td>${proData[i].taxes}</td>
         <td>${proData[i].ads}</td>
