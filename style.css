@@ -7,8 +7,8 @@
     --second-color:#fff;
     --third-color:#111;
     --fourth-color:#000;
-    --fifth-color:rgb(55, 7, 100);
-    --six-color:rgb(72, 10, 131);
+    --fifth-color: #4E4FEB;
+    --six-color: #6969ff;
     --sev-col:#fff
 }
 .dark-theme {
@@ -25,6 +25,7 @@
 body {
     background-color: var(--first-color);
     color: var(--second-color);
+    font-family:cursive
     
 }
 .crud {
@@ -35,6 +36,10 @@ body {
     text-align: center;
     text-transform: uppercase;
     margin: 10px 0;
+}
+.header p {
+    font-size: 18px;
+    word-spacing: 5px;
 }
 .hold div {
     width: 30px;
@@ -66,9 +71,12 @@ input:focus {
     width: 20%;
 }
 #total {
-    background-color: #a00d02;
+    /* background-color: #a00d02; */
     border-radius: 2px;
     padding: 5px 2px;
+    color: #000;
+    font-size: 17;
+    text-transform: capitalize;
 }
 #total::before {
     content: "total: ";
